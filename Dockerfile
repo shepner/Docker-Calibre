@@ -7,6 +7,7 @@ RUN \
   && apt-get -y upgrade \
   && apt-get -y dist-upgrade
 
+# install minimal desktop stuff
 RUN \
   apt-get install -y \
     git \
@@ -19,8 +20,7 @@ RUN \
     firefox \
     openbox \
     geany \
-    menu \
-    xz-utils
+    menu
   
 RUN \
   cd /root \
@@ -28,30 +28,20 @@ RUN \
   && cd noVNC/utils \
   && git clone https://github.com/novnc/websockify.git websockify
 
+# install app specific dependencies
+RUN \
+  apt-get install -y \
+  xz-utils
+VOLUME ["/Library"]
+EXPOSE 6080
+
+# system cleanup
 RUN \
   apt-get autoclean \
   && apt-get autoremove \
   && rm -rf /var/lib/apt/lists/*
 
-
-#echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
-#echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
-
-# Install packages needed for app
-#export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
-#apt-get update && \
-#apt-get install -y ImageMagick && \
-
-# Install steps for X app
-#wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" && \
-#mkdir -p /etc/my_init.d
-
 ADD startup.sh /root/startup.sh
 RUN chmod 0755 /root/startup.sh
-
-VOLUME ["/Library"]
-EXPOSE 6080
-
 CMD /root/startup.sh
-
 
