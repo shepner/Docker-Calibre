@@ -15,9 +15,10 @@ ENV \
   PGID=1100 \
   TERM=xterm
 
+RUN echo $HOME
+
 RUN \
   groupadd -r -g $PGID $PUSR \
-  && echo $HOME \
   && useradd -r -d $HOME -u $PUID -g $PGID -s /bin/bash $PUSR \
   && mkdir -p $HOME \
   && chown -R $PUID:$PGID $HOME
