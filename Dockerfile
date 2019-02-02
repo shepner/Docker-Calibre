@@ -12,7 +12,7 @@ ENV \
   
 RUN \
   mkdir -p $HOME \
-  chown -R $PUID:$PGID $HOME
+  && chown -R $PUID:$PGID $HOME
 
 ###########################################################################################
 # prep to install software
