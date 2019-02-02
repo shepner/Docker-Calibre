@@ -73,6 +73,7 @@ RUN apt-get install -y firefox
 
 ###########################################################################################
 # calibre
+# NOTE: the actual installation will occur in startup.sh
 RUN \
   apt-get install -y xz-utils \
   && mkdir -p $HOME/.config/calibre \
@@ -93,12 +94,12 @@ RUN \
   && rm -rf /var/lib/apt/lists/*
 
 ###########################################################################################
-#
-WORKDIR $HOME
-USER $PUID:$PGID
-
+# startup tasks
 ADD startup.sh $HOME/startup.sh
 RUN chmod 0755 $HOME/startup.sh
+
+WORKDIR $HOME
+USER $PUID:$PGID
 
 CMD $HOME/startup.sh
 
