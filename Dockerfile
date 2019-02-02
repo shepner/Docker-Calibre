@@ -9,8 +9,8 @@ ENV \
 ###########################################################################################
 # user setup
 ENV \
-  PUSR=docker
-  HOME=/docker \
+  PUSR=docker \
+  HOME=/$PUSR \
   PUID=1003 \
   PGID=1100 \
   TERM=xterm
