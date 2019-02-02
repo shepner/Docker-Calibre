@@ -45,13 +45,12 @@ RUN \
 #wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" && \
 #mkdir -p /etc/my_init.d
 
-ADD startup.sh /startup.sh
-RUN chmod 0755 /startup.sh
+ADD startup.sh /root/startup.sh
+RUN chmod 0755 /root/startup.sh
 
-CMD /startup.sh
-
-# Place whater volumes and ports you want exposed here:
-#VOLUME ["/Library"]
+VOLUME ["/Library"]
 EXPOSE 6080
+
+CMD /root/startup.sh
 
 
