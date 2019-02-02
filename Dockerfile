@@ -66,10 +66,14 @@ RUN apt-get install -y firefox
 # calibre
 # NOTE: the actual installation will occur in startup.sh
 RUN \
-  apt-get install -y xz-utils \
-  && mkdir -p $HOME/.config/calibre \
-  && ln -s $HOME/.config/calibre /config \
-  && ln -s $HOME/Calibre\ Library /Library
+  apt-get install -y \
+    xz-utils \
+    python3 \
+  && mkdir -p /config \
+  && mkdir -p $HOME/.config \
+  && ln -s /config $HOME/.config/calibre \
+  && mkdir -p /Library \
+  && ln -s /Library $HOME/Calibre\ Library
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
