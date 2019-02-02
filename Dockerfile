@@ -10,7 +10,7 @@ ENV \
 # user setup
 ENV \
   PUSR=docker
-  HOME=/$PUSR \
+  HOME="/$PUSR" \
   PUID=1003 \
   PGID=1100 \
   TERM=xterm
@@ -59,7 +59,7 @@ ENV \
   VNC_RESOLUTION=1280x1024 \
   VNC_VIEW_ONLY=false
   
-EXPOSE $VNC_PORT $NO_VNC_PORT
+EXPOSE 6080
 
 ###########################################################################################
 # window manager
@@ -89,8 +89,6 @@ RUN \
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
-
-EXPOSE 6080
 
 ###########################################################################################
 # installation cleanup
