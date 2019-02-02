@@ -7,7 +7,7 @@ RUN \
   && apt-get -y upgrade \
   && apt-get -y dist-upgrade
 
-# install minimal desktop stuff
+# install desktop env
 RUN \
   apt-get install -y \
     git \
@@ -20,23 +20,21 @@ RUN \
     firefox \
     openbox \
     geany \
-    menu
-  
-RUN \
-  cd /root \
-  && git clone https://github.com/novnc/noVNC.git \
-  && cd noVNC/utils \
-  && git clone https://github.com/novnc/websockify.git websockify
+    menu \
+  && git clone https://github.com/novnc/noVNC.git /root \
+  && git clone https://github.com/novnc/websockify.git /root/noVNC/utils/websockify
 
-# install app specific dependencies
+# setup app specific items
 RUN \
-  apt-get install -y \
-  xz-utils \
+  apt-get install -y xz-utils \
+  && mkdir -p /root/.config/calibre \
+  && ln -s /root/.config/calibre /config
   && ln -s /root/Calibre\ Library /Library
+VOLUME ["/config"]
 VOLUME ["/Library"]
 EXPOSE 6080
 
-# system cleanup
+# installation cleanup
 RUN \
   apt-get autoclean \
   && apt-get autoremove \
