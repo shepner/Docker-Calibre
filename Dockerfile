@@ -5,8 +5,8 @@ FROM ubuntu:trusty
 ENV \
   HOME=/docker \
   TERM=xterm \
-  DEBIAN_FRONTEND=noninteractive \
-  LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+  DEBIAN_FRONTEND=noninteractive
+  #LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
   
 RUN mkdir -p $HOME
 
