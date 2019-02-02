@@ -12,4 +12,4 @@ openbox-session &  # window manager
 #firefox &
 /opt/calibre/calibre &
 
-/root/noVNC/utils/launch.sh --vnc localhost:5900
+$HOME/noVNC/utils/launch.sh --vnc localhost:5900
