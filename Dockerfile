@@ -3,12 +3,23 @@ FROM ubuntu:trusty
 ###########################################################################################
 # general settings
 ENV \
-  HOME=/docker \
-  TERM=xterm \
   DEBIAN_FRONTEND=noninteractive
   #LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-  
-RUN mkdir -p $HOME
+
+###########################################################################################
+# user setup
+ENV \
+  PUSR=docker
+  HOME=/$PUSR \
+  PUID=1003 \
+  PGID=1100 \
+  TERM=xterm
+
+RUN \
+  groupadd -r -g $PGID $PUSR \
+  && useradd -r -d $HOME -u $PUID -g $PGID -s /bin/bash $PUSR \
+  && mkdir -p $HOME \
+  && chown -R $PUID:$PGID $HOME
 
 ###########################################################################################
 # prep to install software
@@ -39,7 +50,8 @@ RUN \
     x11vnc \
   && git clone https://github.com/novnc/noVNC.git $HOME/noVNC \
   && ln -s $HOME/noVNC/vnc_lite.html $HOME/noVNC/index.html \
-  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify
+  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify \
+  && chown -R $PUID:$PGID $HOME
 
 ENV \
   NO_VNC_HOME=$HOME/noVNC \
@@ -72,7 +84,8 @@ RUN \
   && mkdir -p $HOME/.config \
   && ln -s /config $HOME/.config/calibre \
   && mkdir -p /Library \
-  && ln -s /Library $HOME/Calibre\ Library
+  && ln -s /Library $HOME/Calibre\ Library \
+  && chown -R $PUID:$PGID $HOME
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
@@ -90,7 +103,11 @@ RUN \
 # startup tasks
 ADD startup.sh $HOME/startup.sh
 
-RUN chmod 555 $HOME/startup.sh
+RUN \
+  chmod 555 $HOME/startup.sh \
+  && chown -R $PUID:$PGID $HOME
+
+USER $PUSR
 
 CMD $HOME/startup.sh
 
