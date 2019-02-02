@@ -23,9 +23,9 @@ RUN \
   
 RUN \
   cd /root \
-  && git clone https://github.com/kanaka/noVNC.git \
+  && git clone https://github.com/novnc/noVNC.git \
   && cd noVNC/utils \
-  && git clone https://github.com/kanaka/websockify websockify \
+  && git clone https://github.com/novnc/websockify.git websockify \
   && cd /root \
   && chmod 0755 /startup.sh
 
