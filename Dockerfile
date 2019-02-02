@@ -31,8 +31,9 @@ RUN \
 # install app specific dependencies
 RUN \
   apt-get install -y \
-  xz-utils
-VOLUME ["/root/Calibre\ Library"]
+  xz-utils \
+  && ln -s /root/Calibre\ Library /Library
+VOLUME ["/Library"]
 EXPOSE 6080
 
 # system cleanup
