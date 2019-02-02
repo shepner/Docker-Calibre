@@ -10,13 +10,14 @@ ENV \
 # user setup
 ENV \
   PUSR=docker \
-  HOME=/$PUSR \
+  HOME="/$PUSR" \
   PUID=1003 \
   PGID=1100 \
   TERM=xterm
 
 RUN \
   groupadd -r -g $PGID $PUSR \
+  && echo $HOME \
   && useradd -r -d $HOME -u $PUID -g $PGID -s /bin/bash $PUSR \
   && mkdir -p $HOME \
   && chown -R $PUID:$PGID $HOME
@@ -105,7 +106,7 @@ RUN \
   chmod 555 $HOME/startup.sh \
   && chown -R $PUID:$PGID $HOME
 
-USER $PUSR
+USER $PUSR:$PGID
 
 CMD $HOME/startup.sh
 
