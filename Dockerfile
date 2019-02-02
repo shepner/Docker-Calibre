@@ -30,7 +30,7 @@ RUN apt-get update -y && \
 CMD /startup.sh
 
 # Place whater volumes and ports you want exposed here:
-VOLUME ["/Library"]
+#VOLUME ["/Library"]
 EXPOSE 6080
 
 
