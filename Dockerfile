@@ -4,15 +4,11 @@ FROM ubuntu:trusty
 # general settings
 ENV \
   HOME=/docker \
-  PUID=1003 \
-  PGID=1100 \
   TERM=xterm \
   DEBIAN_FRONTEND=noninteractive \
   LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
   
-RUN \
-  mkdir -p $HOME \
-  && chown -R $PUID:$PGID $HOME
+RUN mkdir -p $HOME
 
 ###########################################################################################
 # prep to install software
@@ -45,8 +41,7 @@ RUN \
     x11vnc \
   && git clone https://github.com/novnc/noVNC.git $HOME/noVNC \
   && ln -s $HOME/noVNC/vnc_lite.html $HOME/noVNC/index.html \
-  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify \
-  && chown -R $PUID:$PGID $HOME/noVNC
+  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify
 
 ENV \
   NO_VNC_HOME=$HOME/noVNC \
@@ -77,7 +72,6 @@ RUN apt-get install -y firefox
 RUN \
   apt-get install -y xz-utils \
   && mkdir -p $HOME/.config/calibre \
-  && chown -R $PUID:$PGID $HOME/.config \
   && ln -s $HOME/.config/calibre /config \
   && ln -s $HOME/Calibre\ Library /Library
 
@@ -96,10 +90,6 @@ RUN \
 ###########################################################################################
 # startup tasks
 ADD startup.sh $HOME/startup.sh
-RUN chmod 0755 $HOME/startup.sh
-
-WORKDIR $HOME
-USER $PUID:$PGID
 
 CMD $HOME/startup.sh
 
