@@ -37,6 +37,7 @@ ENV DISPLAY=:1
 
 ###########################################################################################
 # VNC
+# noVNC webport, connect via http://IP:6900/?password=vncpassword
 RUN \
   apt-get install -y \
     git \
@@ -51,7 +52,7 @@ ENV \
   VNC_PW=vncpassword \
   VNC_VIEW_ONLY=false \
   VNC_PORT=5900 \
-  NO_VNC_PORT=6900  # noVNC webport, connect via http://IP:6900/?password=vncpassword
+  NO_VNC_PORT=6900
   
 EXPOSE $VNC_PORT $NO_VNC_PORT
 
