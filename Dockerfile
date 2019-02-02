@@ -25,9 +25,7 @@ RUN \
   cd /root \
   && git clone https://github.com/novnc/noVNC.git \
   && cd noVNC/utils \
-  && git clone https://github.com/novnc/websockify.git websockify \
-  && cd /root \
-  && chmod 0755 /startup.sh
+  && git clone https://github.com/novnc/websockify.git websockify
 
 RUN \
   apt-get autoclean \
@@ -48,6 +46,7 @@ RUN \
 #mkdir -p /etc/my_init.d
 
 ADD startup.sh /startup.sh
+RUN chmod 0755 /startup.sh
 
 CMD /startup.sh
 
