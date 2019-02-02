@@ -10,7 +10,7 @@ wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /de
 
 #launch apps
 openbox-session &  # window manager
-#firefox &
+firefox &
 /opt/calibre/calibre &
 
 
