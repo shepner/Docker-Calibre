@@ -9,9 +9,10 @@ ENV \
   TERM=xterm \
   DEBIAN_FRONTEND=noninteractive \
   LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-
-USER $PUID:$PGID
-WORKDIR $HOME
+  
+RUN \
+  mkdir -p $HOME \
+  chown -R $PUID:$PGID $HOME
 
 ###########################################################################################
 # prep to install software
@@ -43,7 +44,9 @@ RUN \
     git \
     x11vnc \
   && git clone https://github.com/novnc/noVNC.git $HOME/noVNC \
-  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify
+  && ln -s $HOME/noVNC/vnc_lite.html $HOME/noVNC/index.html \
+  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify \
+  && chown -R $PUID:$PGID $HOME/noVNC
 
 ENV \
   NO_VNC_HOME=$HOME/noVNC \
@@ -73,6 +76,7 @@ RUN apt-get install -y firefox
 RUN \
   apt-get install -y xz-utils \
   && mkdir -p $HOME/.config/calibre \
+  && chown -R $PUID:$PGID $HOME/.config \
   && ln -s $HOME/.config/calibre /config \
   && ln -s $HOME/Calibre\ Library /Library
 
@@ -90,7 +94,11 @@ RUN \
 
 ###########################################################################################
 #
+WORKDIR $HOME
+USER $PUID:$PGID
+
 ADD startup.sh $HOME/startup.sh
 RUN chmod 0755 $HOME/startup.sh
+
 CMD $HOME/startup.sh
 
