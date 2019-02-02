@@ -28,7 +28,7 @@ RUN \
 RUN \
   apt-get install -y xz-utils \
   && mkdir -p /root/.config/calibre \
-  && ln -s /root/.config/calibre /config
+  && ln -s /root/.config/calibre /config \
   && ln -s /root/Calibre\ Library /Library
 VOLUME ["/config"]
 VOLUME ["/Library"]
