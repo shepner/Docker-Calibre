@@ -89,5 +89,7 @@ RUN \
 # startup tasks
 ADD startup.sh $HOME/startup.sh
 
+RUN chmod 555 $HOME/startup.sh
+
 CMD $HOME/startup.sh
 
