@@ -32,7 +32,7 @@ RUN \
 RUN \
   apt-get install -y \
   xz-utils
-VOLUME ["/Library"]
+VOLUME ["/root/Calibre\ Library"]
 EXPOSE 6080
 
 # system cleanup
