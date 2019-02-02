@@ -41,8 +41,8 @@ RUN \
   apt-get install -y \
     git \
     x11vnc \
-  && git clone https://github.com/novnc/noVNC.git /root \
-  && git clone https://github.com/novnc/websockify.git /root/noVNC/utils/websockify
+  && git clone https://github.com/novnc/noVNC.git $HOME/noVNC \
+  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify
 
 ENV \
   NO_VNC_HOME=$HOME/noVNC \
@@ -71,9 +71,9 @@ RUN apt-get install -y firefox
 # calibre
 RUN \
   apt-get install -y xz-utils \
-  && mkdir -p /root/.config/calibre \
-  && ln -s /root/.config/calibre /config \
-  && ln -s /root/Calibre\ Library /Library
+  && mkdir -p $HOME/.config/calibre \
+  && ln -s $HOME/.config/calibre /config \
+  && ln -s $HOME/Calibre\ Library /Library
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
@@ -89,7 +89,7 @@ RUN \
 
 ###########################################################################################
 #
-ADD startup.sh /root/startup.sh
-RUN chmod 0755 /root/startup.sh
-CMD /root/startup.sh
+ADD startup.sh $HOME/startup.sh
+RUN chmod 0755 $HOME/startup.sh
+CMD $HOME/startup.sh
 
