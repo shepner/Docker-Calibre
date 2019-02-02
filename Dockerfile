@@ -19,9 +19,7 @@ RUN \
 
 ###########################################################################################
 # general utils
-#RUN \
-#  apt-get install -y \
-#    wget \
+RUN apt-get install -y wget
 #    python \
 #    python-numpy \
 #    unzip 
