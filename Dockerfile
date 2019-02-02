@@ -19,7 +19,8 @@ RUN \
     firefox \
     openbox \
     geany \
-    menu
+    menu \
+    xz-utils
   
 RUN \
   cd /root \
