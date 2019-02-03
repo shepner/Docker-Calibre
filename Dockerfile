@@ -55,8 +55,6 @@ ENV \
   VNC_VIEW_ONLY=false
 
 # VNC web client
-ADD vnc_custom.html $HOME/noVNC/vnc_custom.html
-
 RUN \
   apt-get install -y \
     git \
@@ -64,8 +62,11 @@ RUN \
     python-numpy \
   && git clone https://github.com/novnc/noVNC.git $HOME/noVNC \
   && ln -s $HOME/noVNC/vnc_custom.html $HOME/noVNC/index.html \
-  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify \
-  && chown -R $PUID:$PGID $HOME
+  && git clone https://github.com/novnc/websockify.git $HOME/noVNC/utils/websockify
+
+ADD vnc_custom.html $HOME/noVNC/vnc_custom.html
+
+RUN chown -R $PUID:$PGID $HOME
 
 ENV NO_VNC_HOME=$HOME/noVNC
   
