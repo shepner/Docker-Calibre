@@ -93,7 +93,9 @@ RUN \
   && ln -s /config $HOME/.config/calibre \
   && mkdir -p /Library \
   && ln -s /Library $HOME/Calibre\ Library \
-  && chown -R $PUID:$PGID $HOME
+  && chown -R $PUID:$PGID $HOME \
+  && mkdir -p /opt/calibre \
+  && chown -R $PUID:$PGID /opt/calibre
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
