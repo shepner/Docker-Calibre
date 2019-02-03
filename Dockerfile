@@ -99,10 +99,13 @@ RUN \
   && ln -s /config $HOME/.config/calibre \
   && mkdir -p /Library \
   && ln -s /Library $HOME/Calibre\ Library \
+  && mkdir -p /incoming \
+  && ln -s /incoming $HOME/incoming \
   && chown -R $PUID:$PGID $HOME
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
+VOLUME ["/incoming"]
 
 #this is the Calibre web interface
 EXPOSE 8080
