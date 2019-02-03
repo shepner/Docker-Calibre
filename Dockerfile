@@ -104,6 +104,9 @@ RUN \
 VOLUME ["/config"]
 VOLUME ["/Library"]
 
+#this is the Calibre web interface
+EXPOSE 8080
+
 ###########################################################################################
 # installation cleanup
 RUN \
