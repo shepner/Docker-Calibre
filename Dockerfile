@@ -84,6 +84,8 @@ RUN apt-get install -y firefox
 ###########################################################################################
 # calibre
 # NOTE: the actual installation will occur in startup.sh
+ADD install_calibre.sh $HOME/install_calibre.sh
+
 RUN \
   apt-get install -y \
     xz-utils \
@@ -93,9 +95,7 @@ RUN \
   && ln -s /config $HOME/.config/calibre \
   && mkdir -p /Library \
   && ln -s /Library $HOME/Calibre\ Library \
-  && chown -R $PUID:$PGID $HOME \
-  && mkdir -p /opt/calibre \
-  && chown -R $PUID:$PGID /opt/calibre
+  && chown -R $PUID:$PGID $HOME
 
 VOLUME ["/config"]
 VOLUME ["/Library"]
