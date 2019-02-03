@@ -90,6 +90,7 @@ RUN \
   apt-get install -y \
     xz-utils \
     python3 \
+  && chmod 550 $HOME/install_calibre.sh \
   && mkdir -p /config \
   && mkdir -p $HOME/.config \
   && ln -s /config $HOME/.config/calibre \
