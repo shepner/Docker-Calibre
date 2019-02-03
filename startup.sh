@@ -12,6 +12,6 @@ openbox-session &  # window manager
 #firefox &
 
 $HOME/install_calibre.sh
-/opt/calibre/calibre &
+$HOME/calibre/calibre &
 
 $HOME/noVNC/utils/launch.sh --vnc localhost:5900
