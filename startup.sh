@@ -10,6 +10,8 @@ wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /de
 #launch apps
 openbox-session &  # window manager
 #firefox &
+
+$HOME/install_calibre.sh
 /opt/calibre/calibre &
 
 $HOME/noVNC/utils/launch.sh --vnc localhost:5900
