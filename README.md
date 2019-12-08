@@ -8,5 +8,5 @@ https://github.com/paimpozhil/docker-novnc
 
 
 
-docker build https://github.com/shepner/Docker-handbrake.git
+`docker build https://github.com/shepner/Docker-handbrake.git`
 
