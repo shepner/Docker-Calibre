@@ -91,8 +91,11 @@ ADD install_calibre.sh $HOME/install_calibre.sh
 
 RUN \
   apt-get install -y \
+    xdg-utils \
+    wget \
     xz-utils \
     python3 \
+    libstdc++6 \
   && chmod 550 $HOME/install_calibre.sh \
   && mkdir -p /config \
   && mkdir -p $HOME/.config \
