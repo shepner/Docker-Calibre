@@ -38,7 +38,7 @@ RUN apt-get install -y wget
     
 ###########################################################################################
 # X
-RUN apt-get install -y Xvfb
+RUN apt-get install -y xvfb
 
 ENV DISPLAY=:1
 
