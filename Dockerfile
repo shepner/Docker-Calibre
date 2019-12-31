@@ -130,5 +130,5 @@ RUN \
 
 USER $PUSR:$PGID
 
-#CMD $HOME/startup.sh
-CMD ["/bin/sh"]
+CMD $HOME/startup.sh
+#CMD ["/bin/sh"]
